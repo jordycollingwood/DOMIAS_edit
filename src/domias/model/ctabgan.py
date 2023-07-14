@@ -1,9 +1,9 @@
 import pandas as pd
 import time
 # Used for pre/post-processing of the input/generated data
-from model.pipeline.data_preparation import DataPrep 
+from domias.model.pipeline.data_preparation import DataPrep 
 # Model class for the CTABGANSynthesizer
-from model.synthesizer.ctabgan_synthesizer import CTABGANSynthesizer 
+from domias.model.synthesizer.ctabgan_synthesizer import CTABGANSynthesizer 
 
 import warnings
 
