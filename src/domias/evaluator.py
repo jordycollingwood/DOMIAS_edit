@@ -304,6 +304,10 @@ def evaluate_performance(
         elif density_estimator == "prior":
             p_R_evaluated = norm.pdf(X_test)
 
+
+        print(p_G_evaluated)
+        print(p_R_evaluated)
+        print(p_rel)
         p_rel = p_G_evaluated / (p_R_evaluated + 1e-10)
 
         acc, auc = compute_metrics_baseline(p_rel, Y_test)
