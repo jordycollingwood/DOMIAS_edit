@@ -195,6 +195,7 @@ def evaluate_performance(
             "data": {},
         }
         synth_set = generator.generate(synthetic_size)
+        print(f'Synth set {synth_set}')
         synth_val_set = generator.generate(synthetic_size)
 
         wd_n = min(len(synth_set), len(reference_set))
@@ -232,6 +233,7 @@ def evaluate_performance(
                 .detach()
                 .numpy()
             )
+            print(f'p_G_evaluated: {p_G_evaluated}')
 
         # KDE for pG
         elif density_estimator == "kde":
