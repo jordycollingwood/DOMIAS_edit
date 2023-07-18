@@ -195,10 +195,7 @@ def evaluate_performance(
             "data": {},
         }
         synth_set = generator.generate(synthetic_size)
-        print('Synth_set')
-        print(synth_set)
-        print('synth_set.values')
-        print(synth_set.values)
+
         synth_val_set = generator.generate(synthetic_size)
 
         wd_n = min(len(synth_set), len(reference_set))
@@ -220,11 +217,17 @@ def evaluate_performance(
         # First, estimate density of synthetic data
         # BNAF for pG
         if density_estimator == "bnaf":
+            print('Synth_set')
+            print(synth_set)
+            print('synth_set.values')
+            print(synth_set.values)
             _, p_G_model = density_estimator_trainer(
                 synth_set.values,
                 synth_val_set.values[: int(0.5 * synthetic_size)],
                 synth_val_set.values[int(0.5 * synthetic_size) :],
             )
+            print('synth_val_set.values[: int(0.5 * synthetic_size)]')
+            print(synth_val_set.values[: int(0.5 * synthetic_size)])
 
             # _, p_G_model = density_estimator_trainer(
             #     synth_set.values
