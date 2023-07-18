@@ -307,8 +307,10 @@ def evaluate_performance(
 
         print(p_G_evaluated)
         print(p_R_evaluated)
-        print(p_rel)
+       
         p_rel = p_G_evaluated / (p_R_evaluated + 1e-10)
+
+        print(p_rel)
 
         acc, auc = compute_metrics_baseline(p_rel, Y_test)
         performance_logger[synthetic_size]["MIA_performance"]["domias"] = {
