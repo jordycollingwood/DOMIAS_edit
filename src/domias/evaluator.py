@@ -195,7 +195,10 @@ def evaluate_performance(
             "data": {},
         }
         synth_set = generator.generate(synthetic_size)
-        print(f'Synth set {synth_set}')
+        print('Synth_set')
+        print(synth_set)
+        print('synth_set.values')
+        print(synth_set.values)
         synth_val_set = generator.generate(synthetic_size)
 
         wd_n = min(len(synth_set), len(reference_set))
@@ -233,7 +236,7 @@ def evaluate_performance(
                 .detach()
                 .numpy()
             )
-            print(f'p_G_evaluated: {p_G_evaluated}')
+
 
         # KDE for pG
         elif density_estimator == "kde":
@@ -310,13 +313,14 @@ def evaluate_performance(
         elif density_estimator == "prior":
             p_R_evaluated = norm.pdf(X_test)
 
-        
+        print('p_G_evaluated')
         print(p_G_evaluated)
+        #print(p_R_evaluated)
+        print('p_R_evaluated')
         print(p_R_evaluated)
-       
         p_rel = p_G_evaluated / (p_R_evaluated + 1e-10)
 
-        print(p_rel)
+        #print(p_rel)
 
         acc, auc = compute_metrics_baseline(p_rel, Y_test)
         performance_logger[synthetic_size]["MIA_performance"]["domias"] = {
