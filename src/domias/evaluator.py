@@ -217,17 +217,13 @@ def evaluate_performance(
         # First, estimate density of synthetic data
         # BNAF for pG
         if density_estimator == "bnaf":
-            print('Synth_set')
-            print(synth_set)
-            print('synth_set.values')
-            print(synth_set.values)
+            
             _, p_G_model = density_estimator_trainer(
                 synth_set.values,
                 synth_val_set.values[: int(0.5 * synthetic_size)],
                 synth_val_set.values[int(0.5 * synthetic_size) :],
             )
-            print('synth_val_set.values[: int(0.5 * synthetic_size)]')
-            print(synth_val_set.values[: int(0.5 * synthetic_size)])
+
 
             # _, p_G_model = density_estimator_trainer(
             #     synth_set.values
@@ -321,6 +317,15 @@ def evaluate_performance(
         #print(p_R_evaluated)
         print('p_R_evaluated')
         print(p_R_evaluated)
+
+        print('Synth_set')
+        print(synth_set)
+        print('synth_set.values')
+        print(synth_set.values)
+
+        print('synth_val_set.values[: int(0.5 * synthetic_size)]')
+        print(synth_val_set.values[: int(0.5 * synthetic_size)])
+
         p_rel = p_G_evaluated / (p_R_evaluated + 1e-10)
 
         #print(p_rel)
