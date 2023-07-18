@@ -325,4 +325,3 @@ def evaluate_performance(
         performance_logger[synthetic_size]["MIA_scores"]["domias"] = p_rel
 
     return performance_logger
-z
