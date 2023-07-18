@@ -216,15 +216,15 @@ def evaluate_performance(
         # First, estimate density of synthetic data
         # BNAF for pG
         if density_estimator == "bnaf":
-            # _, p_G_model = density_estimator_trainer(
-            #     synth_set.values,
-            #     synth_val_set.values[: int(0.5 * synthetic_size)],
-            #     synth_val_set.values[int(0.5 * synthetic_size) :],
-            # )
-
             _, p_G_model = density_estimator_trainer(
-                synth_set.values
+                synth_set.values,
+                synth_val_set.values[: int(0.5 * synthetic_size)],
+                synth_val_set.values[int(0.5 * synthetic_size) :],
             )
+
+            # _, p_G_model = density_estimator_trainer(
+            #     synth_set.values
+            # )
             _, p_R_model = density_estimator_trainer(reference_set)
             p_G_evaluated = np.exp(
                 compute_log_p_x(p_G_model, torch.as_tensor(X_test).float().to(device))
