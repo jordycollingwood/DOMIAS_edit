@@ -216,10 +216,14 @@ def evaluate_performance(
         # First, estimate density of synthetic data
         # BNAF for pG
         if density_estimator == "bnaf":
+            # _, p_G_model = density_estimator_trainer(
+            #     synth_set.values,
+            #     synth_val_set.values[: int(0.5 * synthetic_size)],
+            #     synth_val_set.values[int(0.5 * synthetic_size) :],
+            # )
+
             _, p_G_model = density_estimator_trainer(
-                synth_set.values,
-                synth_val_set.values[: int(0.5 * synthetic_size)],
-                synth_val_set.values[int(0.5 * synthetic_size) :],
+                synth_set.values
             )
             _, p_R_model = density_estimator_trainer(reference_set)
             p_G_evaluated = np.exp(
@@ -304,7 +308,7 @@ def evaluate_performance(
         elif density_estimator == "prior":
             p_R_evaluated = norm.pdf(X_test)
 
-
+        
         print(p_G_evaluated)
         print(p_R_evaluated)
        
@@ -321,3 +325,4 @@ def evaluate_performance(
         performance_logger[synthetic_size]["MIA_scores"]["domias"] = p_rel
 
     return performance_logger
+z
