@@ -12,7 +12,7 @@ from scipy import stats
 from scipy.stats import multivariate_normal
 
 # domias absolute
-from domias.baselines import baselines, compute_metrics_baseline
+from domias.baselines import baselines, compute_metrics_baseline, compute_metrics_baseline_roc_curve
 from domias.bnaf.density_estimation import compute_log_p_x, density_estimator_trainer
 from domias.metrics.wd import compute_wd
 from domias.models.ctgan import CTGAN
@@ -337,5 +337,9 @@ def evaluate_performance(
         }
 
         performance_logger[synthetic_size]["MIA_scores"]["domias"] = p_rel
+
+
+        #print Domias ROC curve
+        compute_metrics_baseline_roc_curve(p_rel, Y_test)
 
     return performance_logger
