@@ -319,6 +319,8 @@ def evaluate_performance(
         print('p_R_evaluated')
         print(p_R_evaluated)
 
+        print('test1')
+
         print('Synth_set')
         print(synth_set)
         print('synth_set.values')
@@ -329,6 +331,7 @@ def evaluate_performance(
 
         p_rel = p_G_evaluated / (p_R_evaluated + 1e-10)
 
+        print('test2')
         #print(p_rel)
 
         acc, auc = compute_metrics_baseline(p_rel, Y_test)
@@ -339,12 +342,12 @@ def evaluate_performance(
 
         performance_logger[synthetic_size]["MIA_scores"]["domias"] = p_rel
 
-
+        print('test3')
         #print Domias ROC curve
         display = compute_metrics_baseline_roc_curve(p_rel, Y_test)
-        display.plot()
+        display
         plt.show()
 
-        print(display)
+        print('test4')
 
     return performance_logger
