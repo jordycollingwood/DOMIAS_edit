@@ -142,7 +142,7 @@ def compute_metrics_baseline_roc_curve(
     roc_auc = auc(fpr, tpr)
     display = RocCurveDisplay(fpr=fpr, tpr=tpr, roc_auc=roc_auc,
                                    estimator_name='example estimator')
-    return display
+    return display, roc_auc
 
 
 def baselines(
