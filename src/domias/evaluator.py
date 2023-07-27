@@ -343,12 +343,13 @@ def evaluate_performance(
         performance_logger[synthetic_size]["MIA_scores"]["domias"] = p_rel
 
         
-        #print Domias ROC curve
-        roc_curve, roc_auc = compute_metrics_baseline_roc_curve(p_rel, Y_test)
+        #print Domias ROC curve - N.B only the final synthetic size result will be produced. 
+        roc_curve, fpr, tpr = compute_metrics_baseline_roc_curve(p_rel, Y_test)
         roc_curve.plot()
         plt.show()
-        print(roc_curve)
-        print(roc_auc)
+ 
+        print(f'fpr: {fpr}')
+        print(f'tpr: {tpr}')
         
 
     return performance_logger
