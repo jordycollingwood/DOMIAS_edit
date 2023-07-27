@@ -10,6 +10,7 @@ import pandas as pd
 import torch
 from scipy import stats
 from scipy.stats import multivariate_normal
+from matplotlib import pyplot as plt
 
 # domias absolute
 from domias.baselines import baselines, compute_metrics_baseline, compute_metrics_baseline_roc_curve
@@ -340,6 +341,10 @@ def evaluate_performance(
 
 
         #print Domias ROC curve
-        compute_metrics_baseline_roc_curve(p_rel, Y_test)
+        display = compute_metrics_baseline_roc_curve(p_rel, Y_test)
+        display.plot()
+        plt.show()
+
+        print(display)
 
     return performance_logger

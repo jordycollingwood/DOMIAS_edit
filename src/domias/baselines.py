@@ -7,8 +7,7 @@ import torch
 import torch.nn.functional as F
 from scipy import stats
 from sklearn.metrics import accuracy_score, roc_auc_score, roc_curve, auc, RocCurveDisplay
-from sklearn import metrics
-from matplotlib import pyplot as plt
+#from matplotlib import pyplot as plt
 
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -139,12 +138,11 @@ def compute_metrics_baseline_roc_curve(
 ) -> Tuple[float, float]:
     y_pred = y_scores > np.median(y_scores)
 
-    fpr, tpr, thresholds = metrics.roc_curve(y_true, y_pred)
-    roc_auc = metrics.auc(fpr, tpr)
-    display = metrics.RocCurveDisplay(fpr=fpr, tpr=tpr, roc_auc=roc_auc,
+    fpr, tpr, thresholds = roc_curve(y_true, y_pred)
+    roc_auc = auc(fpr, tpr)
+    display = RocCurveDisplay(fpr=fpr, tpr=tpr, roc_auc=roc_auc,
                                    estimator_name='example estimator')
-    display.plot()
-    plt.show()
+    return display
 
 
 def baselines(
