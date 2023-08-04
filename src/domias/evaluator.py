@@ -200,10 +200,14 @@ def evaluate_performance(
         synth_val_set = generator.generate(synthetic_size)
 
         wd_n = min(len(synth_set), len(reference_set))
-        eval_met_on_reference = compute_wd(synth_set[:wd_n], reference_set[:wd_n])
+        # eval_met_on_reference = compute_wd(synth_set[:wd_n], reference_set[:wd_n])
+        # performance_logger[synthetic_size]["MIA_performance"][
+        #     "sample_quality"
+        # ] = eval_met_on_reference
+
         performance_logger[synthetic_size]["MIA_performance"][
             "sample_quality"
-        ] = eval_met_on_reference
+        ] = 0
 
         # get real test sets of members and non members
         X_test = np.concatenate([mem_set, non_mem_set])
