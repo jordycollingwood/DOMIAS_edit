@@ -74,6 +74,7 @@ def evaluate_performance(
     training_epochs: int = 2000,
     synthetic_sizes: list = [10000],
     density_estimator: str = "prior",
+    SHAP_weights: Optional[np.ndarray] = None,
     seed: int = 0,
     device: Any = DEVICE,
     shifted_column: Optional[int] = None,
@@ -247,6 +248,10 @@ def evaluate_performance(
             density_gen = stats.gaussian_kde(synth_set.values.transpose(1, 0))
             density_data = stats.gaussian_kde(reference_set.transpose(1, 0))
             p_G_evaluated = density_gen(X_test.transpose(1, 0))
+
+        elif density_estimator == "kde_weighted":
+            density_gen = stats.gaussian_kde(synth_set.values.transpose(1, 0), weights=SHAP_weights)
+            # Feed in pre_calculated SHAP value vector when testing, can integrate if works
         elif density_estimator == "prior":
             density_gen = stats.gaussian_kde(synth_set.values.transpose(1, 0))
             density_data = stats.gaussian_kde(reference_set.transpose(1, 0))
@@ -335,7 +340,11 @@ def evaluate_performance(
 
         p_rel = p_G_evaluated / (p_R_evaluated + 1e-10)
 
-        
+        print('p_rel')
+        print(p_rel)
+
+        print('Y_test')
+        print(Y_test)
         #print(p_rel)
 
         acc, auc = compute_metrics_baseline(p_rel, Y_test)
