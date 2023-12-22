@@ -282,6 +282,7 @@ def evaluate_performance(
         performance_logger[synthetic_size]["MIA_scores"] = baseline_scores
 
         print("Shape of synth_set:", synth_set.shape)
+        print("Shape of dataset:", dataset.shape)
         print("Shape of dataset_temp:", dataset_temp.shape)
 
 
