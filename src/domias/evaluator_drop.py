@@ -221,7 +221,7 @@ def evaluate_performance(
 
             #dropping column from original dataset to resolve shape inconsistencies? 
             #Do I need to edit above?
-            #dataset = np.delete(dataset, dropped_column)
+            dataset_temp = np.delete(dataset, dropped_column)
 
 
 
@@ -283,7 +283,7 @@ def evaluate_performance(
 
         # build another GAN for LOGAN 0 black-box
         ctgan = CTGAN(epochs=training_epochs, pac=1)
-        synth_set.columns = [str(_) for _ in range(dataset.shape[1])]
+        synth_set.columns = [str(_) for _ in range(dataset_temp.shape[1])]
         ctgan.fit(synth_set)  # train a CTGAN on the generated examples
 
         if ctgan._transformer is None or ctgan._discriminator is None:
