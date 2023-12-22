@@ -196,6 +196,7 @@ def evaluate_performance(
             "data": {},
         }
         synth_set = generator.generate(synthetic_size)
+
         synth_val_set = generator.generate(synthetic_size)
 
         wd_n = min(len(synth_set), len(reference_set))
@@ -217,11 +218,17 @@ def evaluate_performance(
         # First, estimate density of synthetic data
         # BNAF for pG
         if density_estimator == "bnaf":
+            
             _, p_G_model = density_estimator_trainer(
                 synth_set.values,
                 synth_val_set.values[: int(0.5 * synthetic_size)],
                 synth_val_set.values[int(0.5 * synthetic_size) :],
             )
+
+
+            # _, p_G_model = density_estimator_trainer(
+            #     synth_set.values
+            # )
             _, p_R_model = density_estimator_trainer(reference_set)
             p_G_evaluated = np.exp(
                 compute_log_p_x(p_G_model, torch.as_tensor(X_test).float().to(device))
@@ -229,6 +236,7 @@ def evaluate_performance(
                 .detach()
                 .numpy()
             )
+
 
         # KDE for pG
         elif density_estimator == "kde":
@@ -305,7 +313,23 @@ def evaluate_performance(
         elif density_estimator == "prior":
             p_R_evaluated = norm.pdf(X_test)
 
+        print('p_G_evaluated')
+        print(p_G_evaluated)
+        #print(p_R_evaluated)
+        print('p_R_evaluated')
+        print(p_R_evaluated)
+
+        print('Synth_set')
+        print(synth_set)
+        print('synth_set.values')
+        print(synth_set.values)
+
+        print('synth_val_set.values[: int(0.5 * synthetic_size)]')
+        print(synth_val_set.values[: int(0.5 * synthetic_size)])
+
         p_rel = p_G_evaluated / (p_R_evaluated + 1e-10)
+
+        #print(p_rel)
 
         acc, auc = compute_metrics_baseline(p_rel, Y_test)
         performance_logger[synthetic_size]["MIA_performance"]["domias"] = {
