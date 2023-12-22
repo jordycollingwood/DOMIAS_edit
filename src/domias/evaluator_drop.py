@@ -16,7 +16,7 @@ from domias.baselines import baselines, compute_metrics_baseline
 from domias.bnaf.density_estimation import compute_log_p_x, density_estimator_trainer
 from domias.metrics.wd import compute_wd
 from domias.models.ctgan import CTGAN
-from domias.models.llm import LLM
+#from domias.models.llm import LLM
 from domias.models.generator import GeneratorInterface
 
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -213,7 +213,7 @@ def evaluate_performance(
             reference_set = np.delete(reference_set, dropped_column, axis=1)
 
             #drop column name from list of features
-            
+
 
 
 
