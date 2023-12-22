@@ -205,14 +205,24 @@ def evaluate_performance(
 
         #drop feature from synth_set, synth_val_set
         if dropped_column is not None:
-            synth_set = np.delete(synth_set, dropped_column, axis=1)
-            synth_val_set = np.delete(synth_val_set, dropped_column, axis=1)
+            #print(f'synth set shape: {synth_set.shape}')
 
-            mem_set = np.delete(mem_set, dropped_column, axis=1)
-            non_mem_set = np.delete(non_mem_set, dropped_column, axis=1)
-            reference_set = np.delete(reference_set, dropped_column, axis=1)
+            synth_set = synth_set.drop(synth_set.columns[dropped_column], axis=1)
+            synth_val_set = synth_val_set.drop(synth_val_set.columns[dropped_column], axis=1)
+            #synth_val_set = np.delete(synth_val_set, dropped_column, axis=1)
 
-            #drop column name from list of features
+            mem_set = mem_set.drop(mem_set.columns[dropped_column], axis=1)
+            non_mem_set = non_mem_set.drop(non_mem_set.columns[dropped_column], axis=1)
+            reference_set = reference_set.drop(reference_set.columns[dropped_column], axis=1)
+
+            # mem_set = np.delete(mem_set, dropped_column, axis=1)
+            # non_mem_set = np.delete(non_mem_set, dropped_column, axis=1)
+            # reference_set = np.delete(reference_set, dropped_column, axis=1)
+
+            #dropping column from original dataset to resolve shape inconsistencies? 
+            #Do I need to edit above?
+            #dataset = np.delete(dataset, dropped_column)
+
 
 
 
