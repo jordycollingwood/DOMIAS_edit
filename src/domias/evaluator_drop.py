@@ -281,6 +281,10 @@ def evaluate_performance(
         performance_logger[synthetic_size]["MIA_performance"] = baseline_results
         performance_logger[synthetic_size]["MIA_scores"] = baseline_scores
 
+        print("Shape of synth_set:", synth_set.shape)
+        print("Shape of dataset_temp:", dataset_temp.shape)
+
+
         # build another GAN for LOGAN 0 black-box
         ctgan = CTGAN(epochs=training_epochs, pac=1)
         synth_set.columns = [str(_) for _ in range(dataset_temp.shape[1])]
