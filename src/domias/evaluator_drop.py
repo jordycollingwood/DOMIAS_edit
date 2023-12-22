@@ -211,13 +211,13 @@ def evaluate_performance(
             synth_val_set = synth_val_set.drop(synth_val_set.columns[dropped_column], axis=1)
             #synth_val_set = np.delete(synth_val_set, dropped_column, axis=1)
 
-            mem_set = mem_set.drop(mem_set.columns[dropped_column], axis=1)
-            non_mem_set = non_mem_set.drop(non_mem_set.columns[dropped_column], axis=1)
-            reference_set = reference_set.drop(reference_set.columns[dropped_column], axis=1)
+            # mem_set = mem_set.drop(mem_set.columns[dropped_column], axis=1)
+            # non_mem_set = non_mem_set.drop(non_mem_set.columns[dropped_column], axis=1)
+            # reference_set = reference_set.drop(reference_set.columns[dropped_column], axis=1)
 
-            # mem_set = np.delete(mem_set, dropped_column, axis=1)
-            # non_mem_set = np.delete(non_mem_set, dropped_column, axis=1)
-            # reference_set = np.delete(reference_set, dropped_column, axis=1)
+            mem_set = np.delete(mem_set, dropped_column, axis=1)
+            non_mem_set = np.delete(non_mem_set, dropped_column, axis=1)
+            reference_set = np.delete(reference_set, dropped_column, axis=1)
 
             #dropping column from original dataset to resolve shape inconsistencies? 
             #Do I need to edit above?
