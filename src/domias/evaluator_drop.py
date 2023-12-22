@@ -221,7 +221,7 @@ def evaluate_performance(
 
             #dropping column from original dataset to resolve shape inconsistencies? 
             #Do I need to edit above?
-            dataset_temp = np.delete(dataset, dropped_column)
+            dataset_temp = np.delete(dataset, dropped_column, axis=1)
 
 
 
