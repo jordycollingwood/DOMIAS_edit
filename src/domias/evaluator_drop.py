@@ -14,7 +14,7 @@ from scipy.stats import multivariate_normal
 # domias absolute
 from domias.baselines import baselines, compute_metrics_baseline
 from domias.bnaf.density_estimation import compute_log_p_x, density_estimator_trainer
-from domias.metrics.wd import compute_wd
+#from domias.metrics.wd import compute_wd
 from domias.models.ctgan import CTGAN
 #from domias.models.llm import LLM
 from domias.models.generator import GeneratorInterface
@@ -227,11 +227,11 @@ def evaluate_performance(
 
 
 
-        wd_n = min(len(synth_set), len(reference_set))
-        eval_met_on_reference = compute_wd(synth_set[:wd_n], reference_set[:wd_n])
+        _wd_n = min(len(synth_set), len(reference_set))
+        #eval_met_on_reference = compute_wd(synth_set[:wd_n], reference_set[:wd_n])
         performance_logger[synthetic_size]["MIA_performance"][
             "sample_quality"
-        ] = eval_met_on_reference
+        ] = 0
 
         # get real test sets of members and non members
         X_test = np.concatenate([mem_set, non_mem_set])
